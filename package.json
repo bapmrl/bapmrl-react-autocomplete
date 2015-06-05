@@ -1,11 +1,12 @@
 {
   "name": "bapmrl-react-autocomplete",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
-  "main": "build/autocomplete.js",
-  "scripts": {
-    "build": "browserify src/index.js -t babelify -x react -o build/autocomplete.js",
-    "prepublish": "npm run build"
+  "main": "src/index.js",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,10 @@
   },
   "homepage": "https://github.com/bapmrl/react-autocomplete#readme",
   "dependencies": {
+    "babelify": "6.1.2",
     "lodash.throttle": "3.0.3"
   },
   "devDependencies": {
-    "babelify": "~6.1.2",
     "browserify": "~10.2.3"
   },
   "peerDependencies": {
