@@ -13,8 +13,7 @@ import Autocomplete from 'bapmrl-react-autocomplete';
     input => Promise.resolve(input.split().map(c => { return { text: c }; }))
   }
   onOptionSelected={option => { window.alert(option.text); }}
-  ref="autocomplete"
-/>
+  ref="autocomplete" />
 ```
 
 ## API
