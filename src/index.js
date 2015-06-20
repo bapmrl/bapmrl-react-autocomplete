@@ -4,7 +4,6 @@ import throttle from 'lodash.throttle';
 export default class Autocomplete extends React.Component {
   constructor(props) {
     super(props);
-    this._throttledOptions = throttle(props.options, props.wait);
 
     this.state = {
       value: '',
@@ -12,6 +11,11 @@ export default class Autocomplete extends React.Component {
       hoveredOptionIndex: null,
       selectedOption: null
     };
+
+    this._throttledUpdateOptions = throttle(
+      this._throttledUpdateOptions.bind(this),
+      props.wait
+    );
 
     this._onChange = this._onChange.bind(this);
     this._onDocumentClick = this._onDocumentClick.bind(this);
@@ -78,20 +82,7 @@ export default class Autocomplete extends React.Component {
     const value = e.target.value;
     this.setState({ value, hoveredOptionIndex: null, selectedOption: null });
     this.props.onValueChange(value);
-    this._throttledOptions(value).then(options => {
-      this.setState({
-        options: options.slice(0, this.props.maxVisible),
-        hoveredOptionIndex: null,
-        selectedOption: null
-      });
-    }, error => {
-      console.error(error);
-      this.setState({
-        options: [],
-        hoveredOptionIndex: null,
-        selectedOption: null
-      });
-    });
+    this._throttledUpdateOptions(value);
   }
 
   _onDocumentClick(e) {
@@ -155,6 +146,23 @@ export default class Autocomplete extends React.Component {
       selectedOption
     });
     this.props.onOptionSelected(selectedOption);
+  }
+
+  _throttledUpdateOptions(value) {
+    this.props.options(value).then(options => {
+      this.setState({
+        options: options.slice(0, this.props.maxVisible),
+        hoveredOptionIndex: null,
+        selectedOption: null
+      });
+    }, error => {
+      console.error(error);
+      this.setState({
+        options: [],
+        hoveredOptionIndex: null,
+        selectedOption: null
+      });
+    });
   }
 
   getValue() {
