@@ -68,6 +68,10 @@ export default class Autocomplete extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this._throttledUpdateOptions.cancel();
+  }
+
   _onArrowDown(e) {
     e.preventDefault();
     this._moveHover(1);
