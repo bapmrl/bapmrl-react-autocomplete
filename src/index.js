@@ -22,6 +22,7 @@ export default class Autocomplete extends React.Component {
     this._onKeyDown = this._onKeyDown.bind(this);
     this._keyDownHandlers = {
       13: this._onReturn,
+      27: this._onEscape,
       38: this._onArrowUp,
       40: this._onArrowDown
     };
@@ -93,6 +94,13 @@ export default class Autocomplete extends React.Component {
     const inputNode = React.findDOMNode(this.refs.input);
     if (this.state.options && e.target !== inputNode) {
       this.setState({ options: [] });
+    }
+  }
+
+  _onEscape(e) {
+    if (this.state.options) {
+      e.preventDefault();
+      this.setState({ options: [], hoveredOptionIndex: null });
     }
   }
 
