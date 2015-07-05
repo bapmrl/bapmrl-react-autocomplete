@@ -1,5 +1,6 @@
 import React from 'react';
 import throttle from 'lodash.throttle';
+import { shallowEqual } from './utils';
 
 export default class Autocomplete extends React.Component {
   constructor(props) {
@@ -71,6 +72,13 @@ export default class Autocomplete extends React.Component {
 
   componentWillUnmount() {
     this._throttledUpdateOptions.cancel();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !shallowEqual(this.props.classNames, nextProps.classNames) ||
+      !shallowEqual(this.props.inputProps, nextProps.inputProps) ||
+      this.props.maxVisible !== nextProps.maxVisible ||
+      !shallowEqual(this.state, nextState);
   }
 
   _onArrowDown(e) {
