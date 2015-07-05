@@ -7,7 +7,7 @@ export default class Autocomplete extends React.Component {
     super(props);
 
     this.state = {
-      value: '',
+      value: props.inputProps.value,
       options: [],
       hoveredOptionIndex: null,
       selectedOption: null
@@ -49,12 +49,11 @@ export default class Autocomplete extends React.Component {
     ) : null;
     return (
       <div className={this.props.classNames.autocomplete}>
-        <input type="text" autoCapitalize="none" autoComplete="off"
-          autoCorrect="off" className={this.props.classNames.input}
-          onChange={this._onChange}
+        <input {...this.props.inputProps} type="text" autoCapitalize="none"
+          autoComplete="off" autoCorrect="off"
+          className={this.props.classNames.input} onChange={this._onChange}
           onKeyDown={this.state.options.length ? this._onKeyDown : null}
-          ref="input" spellCheck="false" value={this.state.value}
-          {...this.props.inputProps} />
+          ref="input" spellCheck="false" value={this.state.value} />
         {listNode}
       </div>
     );
@@ -67,6 +66,18 @@ export default class Autocomplete extends React.Component {
       } else if (prevState.options.length && !this.state.options.length) {
         document.removeEventListener('click', this._onDocumentClick);
       }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.inputProps.value !== nextProps.inputProps.value) {
+      this._throttledUpdateOptions.cancel();
+      this.setState({
+        value: nextProps.inputProps.value,
+        options: [],
+        hoveredOptionIndex: null,
+        selectedOption: null
+      });
     }
   }
 
@@ -223,7 +234,8 @@ Autocomplete.defaultProps = {
     readOnly: false,
     required: false,
     size: 20,
-    title: null
+    title: null,
+    value: ''
   },
   maxVisible: 10,
   onValueChange: () => {},
