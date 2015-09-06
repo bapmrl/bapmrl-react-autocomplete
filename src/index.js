@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import throttle from 'lodash.throttle';
 import { shallowEqual } from './utils';
 
-export default class Autocomplete extends React.Component {
+export default class Autocomplete extends Component {
   constructor(props) {
     super(props);
 
@@ -206,13 +206,32 @@ export default class Autocomplete extends React.Component {
 }
 
 Autocomplete.propTypes = {
-  classNames: React.PropTypes.object,
-  inputProps: React.PropTypes.object,
-  maxVisible: React.PropTypes.number,
-  onValueChange: React.PropTypes.func,
-  onOptionSelected: React.PropTypes.func,
-  options: React.PropTypes.func.isRequired,
-  wait: React.PropTypes.number
+  classNames: PropTypes.shape({
+    autocomplete: PropTypes.string,
+    input: PropTypes.string,
+    options: PropTypes.string,
+    option: PropTypes.string,
+    optionHover: PropTypes.string
+  }),
+  inputProps: PropTypes.shape({
+    autoFocus: PropTypes.bool,
+    disabled: PropTypes.bool,
+    form: PropTypes.string,
+    maxLength: PropTypes.number,
+    name: PropTypes.string,
+    pattern: PropTypes.string,
+    placeholder: PropTypes.string,
+    readOnly: PropTypes.bool,
+    required: PropTypes.bool,
+    size: PropTypes.number,
+    title: PropTypes.string,
+    value: PropTypes.string
+  }),
+  maxVisible: PropTypes.number,
+  onValueChange: PropTypes.func,
+  onOptionSelected: PropTypes.func,
+  options: PropTypes.func.isRequired,
+  wait: PropTypes.number
 };
 
 Autocomplete.defaultProps = {
