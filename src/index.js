@@ -36,12 +36,12 @@ export default class Autocomplete extends Component {
         className={this.props.classNames.options}>
         {
           this.state.options.map((option, index) =>
-            <li key={option.text} onClick={this._onListItemClick(index)}
+            <li key={option.key} onClick={this._onListItemClick(index)}
               onMouseMove={this._onMouseMove(index)}
               className={this.props.classNames.option +
                 (index === this.state.hoveredOptionIndex ?
                   ` ${this.props.classNames.optionHover}` : '')}>
-              {option.text}
+              {option.label}
             </li>
           )
         }
@@ -163,7 +163,7 @@ export default class Autocomplete extends Component {
       hoveredOptionIndex -= length;
     }
     this.setState({
-      value: this.state.options[hoveredOptionIndex].text,
+      value: this.state.options[hoveredOptionIndex].label,
       hoveredOptionIndex
     });
   }
@@ -171,7 +171,7 @@ export default class Autocomplete extends Component {
   _selectOption(index) {
     const selectedOption = this.state.options[index];
     this.setState({
-      value: selectedOption.text,
+      value: selectedOption.label,
       options: [],
       hoveredOptionIndex: null,
       selectedOption

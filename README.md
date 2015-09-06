@@ -10,9 +10,11 @@ import Autocomplete from 'bapmrl-react-autocomplete';
 
 <Autocomplete
   options={
-    input => Promise.resolve(input.split().map(c => { return { text: c }; }))
+    input => Promise.resolve(
+      input.split().map((w, index) => { return { key: index, label: w }; })
+    )
   }
-  onOptionSelected={option => { window.alert(option.text); }}
+  onOptionSelected={option => { window.alert(option.label); }}
   ref="autocomplete" />
 ```
 
@@ -56,8 +58,8 @@ Event handler for the `change` event on the Autocomplete `<input>` element.
 Type: `Function`
 
 A function that returns for a given Autocomplete input value a `Promise` for an
-`Array` of `Option` objects. An `Option` object must simply have a `text`
-property but may carry additional payload.
+`Array` of `Option` objects. An `Option` object must have a React `key`, a
+`label` and may carry additional payload.
 
 #### props.wait
 
