@@ -217,11 +217,11 @@ Autocomplete.propTypes = {
 
 Autocomplete.defaultProps = {
   classNames: {
-    autocomplete: null,
-    input: null,
-    options: null,
-    option: null,
-    optionHover: null
+    autocomplete: 'autocomplete',
+    input: 'autocompleteInput',
+    options: 'autocompleteOptions',
+    option: 'autocompleteOption',
+    optionHover: 'autocompleteOptionHover'
   },
   inputProps: {
     autoFocus: false,
