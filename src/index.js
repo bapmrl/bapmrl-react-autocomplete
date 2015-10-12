@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import throttle from 'lodash.throttle';
 import { shallowEqual } from './utils';
 
@@ -110,7 +111,7 @@ export default class Autocomplete extends Component {
   }
 
   _onDocumentClick(e) {
-    const inputNode = React.findDOMNode(this.refs.input);
+    const inputNode = ReactDOM.findDOMNode(this.refs.input);
     if (this.state.options && e.target !== inputNode) {
       this.setState({ options: [] });
     }
