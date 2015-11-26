@@ -80,3 +80,9 @@ Type: `Function`
 
 Returns the selected `Option`. If the user has picked an option but then changes
 the Autocomplete input value this function will return `null`.
+
+### hasHoveredOption
+
+Type: `Function`
+
+Returns `true` when an option is hovered and `false` otherwise.

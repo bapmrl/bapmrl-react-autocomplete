@@ -204,6 +204,10 @@ export default class Autocomplete extends Component {
   getSelectedOption() {
     return this.state.selectedOption;
   }
+
+  hasHoveredOption() {
+    return this.state.hoveredOptionIndex !== null;
+  }
 }
 
 Autocomplete.propTypes = {
