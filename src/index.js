@@ -75,7 +75,6 @@ export default class Autocomplete extends Component {
       this._throttledUpdateOptions.cancel();
       this.setState({
         value: nextProps.inputProps.value,
-        options: [],
         hoveredOptionIndex: null,
         selectedOption: null
       });
