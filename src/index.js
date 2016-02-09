@@ -150,6 +150,8 @@ export default class Autocomplete extends Component {
     if (this.state.hoveredOptionIndex !== null) {
       e.preventDefault();
       this._selectOption(this.state.hoveredOptionIndex);
+    } else if (this.props.onReturn) {
+      this.props.onReturn(e);
     }
   }
 
@@ -234,6 +236,7 @@ Autocomplete.propTypes = {
   maxVisible: PropTypes.number,
   onValueChange: PropTypes.func,
   onOptionSelected: PropTypes.func,
+  onReturn: PropTypes.func,
   options: PropTypes.func.isRequired,
   wait: PropTypes.number
 };
