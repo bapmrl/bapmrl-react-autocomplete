@@ -53,8 +53,8 @@ export default class Autocomplete extends Component {
         <input {...this.props.inputProps} type="text" autoCapitalize="none"
           autoComplete="off" autoCorrect="off"
           className={this.props.classNames.input} onChange={this._onChange}
-          onKeyDown={this.state.options.length ? this._onKeyDown : null}
-          ref="input" spellCheck="false" value={this.state.value} />
+          onKeyDown={this._onKeyDown} ref="input" spellCheck="false"
+          value={this.state.value} />
         {listNode}
       </div>
     );
@@ -93,13 +93,17 @@ export default class Autocomplete extends Component {
   }
 
   _onArrowDown(e) {
-    e.preventDefault();
-    this._moveHover(1);
+    if (this.state.options) {
+      e.preventDefault();
+      this._moveHover(1);
+    }
   }
 
   _onArrowUp(e) {
-    e.preventDefault();
-    this._moveHover(-1);
+    if (this.state.options) {
+      e.preventDefault();
+      this._moveHover(-1);
+    }
   }
 
   _onChange(e) {
@@ -151,6 +155,11 @@ export default class Autocomplete extends Component {
       e.preventDefault();
       this._selectOption(this.state.hoveredOptionIndex);
     } else if (this.props.onReturn) {
+      this.setState({
+        options: [],
+        hoveredOptionIndex: null,
+        selectedOption: null
+      });
       this.props.onReturn(e);
     }
   }
