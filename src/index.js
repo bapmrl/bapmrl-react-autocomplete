@@ -239,6 +239,7 @@ Autocomplete.propTypes = {
     readOnly: PropTypes.bool,
     required: PropTypes.bool,
     size: PropTypes.number,
+    tabIndex: PropTypes.number,
     title: PropTypes.string,
     value: PropTypes.string
   }),
@@ -269,6 +270,7 @@ Autocomplete.defaultProps = {
     readOnly: false,
     required: false,
     size: 20,
+    tabIndex: null,
     title: null,
     value: ''
   },
