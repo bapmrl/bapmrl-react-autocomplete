@@ -4,6 +4,7 @@
   "description": "React Autocomplete Component",
   "main": "lib/index.js",
   "scripts": {
+    "build": "npm run build:babel",
     "build:babel": "babel ./src --out-dir ./lib --no-comments"
   },
   "repository": {
