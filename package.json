@@ -2,11 +2,9 @@
   "name": "bapmrl-react-autocomplete",
   "version": "1.0.12",
   "description": "React Autocomplete Component",
-  "main": "src/index.js",
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
+  "main": "lib/index.js",
+  "scripts": {
+    "build:babel": "babel ./src --out-dir ./lib --no-comments"
   },
   "repository": {
     "type": "git",
@@ -23,11 +21,14 @@
   },
   "homepage": "https://github.com/bapmrl/react-autocomplete#readme",
   "dependencies": {
-    "babelify": "6.1.2",
-    "lodash.throttle": "3.0.3"
-  },
-  "devDependencies": {
-    "browserify": "~10.2.3"
+    "babel-cli": "6.10.1",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.11.1",
+    "babel-preset-stage-1": "6.5.0",
+    "babel-preset-stage-2": "6.5.0",
+    "react": "15.2.1",
+    "react-dom": "15.2.1",
+    "lodash.throttle": "4.0.1"
   },
   "peerDependencies": {
     "react": ">= 0.14.0",
