@@ -3,10 +3,11 @@
   "version": "1.0.14",
   "description": "React Autocomplete Component",
   "main": "./lib/index.js",
+  "typings": "./typings/index.d.ts",
   "scripts": {
-    "build": "npm run build:babel",
-    "build:babel": "babel ./src --out-dir ./lib --no-comments",
-    "prepublish": "npm run build"
+    "build": "npm run compile",
+    "compile": "babel ./src --out-dir ./lib --no-comments",
+    "prepublish": "npm run compile"
   },
   "repository": {
     "type": "git",
