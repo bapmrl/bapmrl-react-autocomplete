@@ -1,6 +1,6 @@
 {
   "name": "dml-react-autocomplete",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "React Autocomplete Component",
   "main": "./lib/index.js",
   "typings": "./typings/index.d.ts",
