@@ -11,6 +11,7 @@ declare module 'dml-react-autocomplete' {
     onReturn?: Function
     options: Function
     wait?: number
+    autoFocus?: boolean
   }
 
   export class Autocomplete extends React.Component<AutocompleteProps, {}> {}

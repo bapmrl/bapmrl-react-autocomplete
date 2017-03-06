@@ -4,6 +4,7 @@ import throttle from 'lodash.throttle';
 import { shallowEqual } from './utils';
 
 export default class Autocomplete extends Component {
+
   constructor(props) {
     super(props);
 
@@ -49,13 +50,22 @@ export default class Autocomplete extends Component {
       </ul>
     ) : null;
     return (
-      <div className={this.props.classNames.autocomplete}>
-        <input {...this.props.inputProps} type="text" autoCapitalize="none"
-          autoComplete="off" autoCorrect="off"
-          className={this.props.classNames.input} onChange={this._onChange}
-          onKeyDown={this._onKeyDown} ref="input" spellCheck="false"
-          value={this.state.value} />
-        {listNode}
+      <div className={ this.props.classNames.autocomplete }>
+        <input
+          { ...this.props.inputProps }
+          type="text"
+          autoCapitalize="none"
+          autoComplete="off"
+          autoCorrect="off"
+          ref="input"
+          spellCheck="false"
+          className={ this.props.classNames.input }
+          onChange={ this._onChange }
+          onKeyDown={ this._onKeyDown }
+          value={ this.state.value }
+          autoFocus={ this.props.autoFocus }
+        />
+        { listNode }
       </div>
     );
   }
@@ -248,7 +258,8 @@ Autocomplete.propTypes = {
   onOptionSelected: PropTypes.func,
   onReturn: PropTypes.func,
   options: PropTypes.func.isRequired,
-  wait: PropTypes.number
+  wait: PropTypes.number,
+  autoFocus: PropTypes.bool
 };
 
 Autocomplete.defaultProps = {
@@ -277,5 +288,6 @@ Autocomplete.defaultProps = {
   maxVisible: 10,
   onValueChange: () => {},
   onOptionSelected: () => {},
-  wait: 250
+  wait: 250,
+  autoFocus: false
 };
