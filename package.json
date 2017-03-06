@@ -1,5 +1,5 @@
 {
-  "name": "dml-react-autocomplete",
+  "name": "bapmrl-react-autocomplete",
   "version": "1.0.16",
   "description": "React Autocomplete Component",
   "main": "./lib/index.js",
