@@ -1,6 +1,6 @@
 import React = __React
 
-declare module 'dml-react-autocomplete' {
+declare module 'bapmrl-react-autocomplete' {
 
   interface AutocompleteProps {
     classNames?: any
