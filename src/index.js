@@ -118,9 +118,10 @@ export default class Autocomplete extends Component {
 
   _onChange(e) {
     const value = e.target.value;
-    this.setState({ value, hoveredOptionIndex: null, selectedOption: null });
     this.props.onValueChange(value);
-    this._throttledUpdateOptions(value);
+    this.setState({ value, hoveredOptionIndex: null, selectedOption: null }, () => {
+      this._throttledUpdateOptions(value);
+    });
   }
 
   _onDocumentClick(e) {
